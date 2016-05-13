@@ -144,3 +144,9 @@ void Aruhaz::kiir() {
 	for (int i = 0; i < People.size(); i++)
 		cout << People[i]->whatIsMyRole() << endl;
 }
+
+Aruhaz::~Aruhaz() {
+	for (int i = 0; i < People.size(); i++) {
+		delete People[i];
+	}
+}

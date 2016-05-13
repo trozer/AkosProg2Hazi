@@ -3,7 +3,11 @@
 #include"Seller.h"
 #include"Buyer.h"
 
+using namespace std;
+
 int main() {
+
+	cout << "Keszitunk egy 6 fos aruhazat..." << endl;
 	Aruhaz aruhaz = Aruhaz(6);
 
 	aruhaz.addGuard(new Guard());

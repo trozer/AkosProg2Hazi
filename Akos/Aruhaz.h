@@ -45,4 +45,6 @@ public:
 
 	void kiir();
 
+	~Aruhaz();
+
 };
