@@ -7,9 +7,16 @@ using namespace std;
 
 int main() {
 
+	Buyer *vevo;
+	Seller *elado;
+	Guard *or ;
+
 	cout << "Keszitunk egy 6 fos aruhazat..." << endl;
 	Aruhaz aruhaz = Aruhaz(6);
 
+	cout << "Teszt 1 : megprobalunk hozzaadni egy vevot" << endl;
+	if (!aruhaz.addBuyer(vevo))
+		delete vevo;
 	aruhaz.addGuard(new Guard());
 	Buyer *vevo = new Buyer();
 	if (!aruhaz.addBuyer(vevo))
