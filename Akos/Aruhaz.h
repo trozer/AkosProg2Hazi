@@ -40,10 +40,13 @@ public:
 	void deleteSeller();
 	void deleteBuyer();
 
+	const char *fajlban_nev()const {
+		return"aruhaz";
+	}
 	void save(std::ostream &os) const;
 	void load(std::istream &is);
 
-	void kiir();
+	void list();
 
 	~Aruhaz();
 

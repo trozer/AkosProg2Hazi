@@ -58,9 +58,10 @@ void Aruhaz::deleteGuard() {
 			if (People[i]->whatIsMyRole() == "Or") {
 				delete People[i];
 				People.erase(People.begin() + i);
+				cout << "Egy or kilepett a boltbol" << endl;
+				guardNum--;
+				break;
 			}
-		cout << "Egy or kilepett a boltbol" << endl;
-		guardNum--;
 	}
 	else 
 	if (guardNum == 1) {
@@ -83,9 +84,10 @@ void Aruhaz::deleteSeller() {
 			if (People[i]->whatIsMyRole() == "Elado") {
 				delete People[i];
 				People.erase(People.begin() + i);
+				cout << "Egy elado kilepett a boltbol" << endl;
+				sellerNum--;
+				break;
 			}
-		cout << "Egy elado kilepett a boltbol" << endl;
-		sellerNum--;
 	}else
 	if (sellerNum == 1) {
 		bool isThereBuyer = false;
@@ -101,6 +103,8 @@ void Aruhaz::deleteSeller() {
 			cout << "Az utolso Elado elhagyta a boltot." << endl;
 			sellerNum--;
 		}
+		else
+			cout << "Van meg bent vevo, az utolso elado nem hagyhatja el a boltot." << endl;
 	}
 	else {
 		cout << "Nincs Elado a boltban." << endl;
@@ -114,6 +118,7 @@ void Aruhaz::deleteBuyer() {
 			delete People[i];
 			People.erase(People.begin() + i);
 			isThereBuyer = true;
+			break;
 		}
 	if(isThereBuyer)
 		cout << "Egy Vevo elhagyta a boltot." << endl;
@@ -122,24 +127,33 @@ void Aruhaz::deleteBuyer() {
 }
 
 void Aruhaz::save(std::ostream& os) const{
+	os << fajlban_nev() << ' ' << sellerNum << ' ' << guardNum << ' ' << cap << endl;
 	for (int i = 0; i < People.size(); i++)
 		People[i]->save(os);
 }
 
 void Aruhaz::load(std::istream &is) {
-	for (int i = 0; i < People.size(); i++)
-		delete People[i];
-	People.clear();
+	string type;
+	is >> type;
+	if (type == "aruhaz") {
+		is >> sellerNum >> guardNum >> cap;
+		for (int i = 0; i < People.size(); i++)
+			delete People[i];
+		People.clear();
 
-	Person *uj;
-	uj = Person::beolvas(is);
-	while (uj) {
-		People.push_back(uj);
+		Person *uj;
 		uj = Person::beolvas(is);
+		while (uj) {
+			People.push_back(uj);
+			uj = Person::beolvas(is);
+		}
+	}
+	else {
+		cout << "A kapott karaktersorozat nem egy kimentett aruhaz objektum." << endl;
 	}
 }
 
-void Aruhaz::kiir() {
+void Aruhaz::list() {
 	cout << "ARUHAZ NEPESSEGE: " << endl;
 	for (int i = 0; i < People.size(); i++)
 		cout << People[i]->whatIsMyRole() << endl;
