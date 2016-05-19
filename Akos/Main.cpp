@@ -177,7 +177,16 @@ int main() {
 	}
 	cout << "-------------" << endl;
 
-	cout << "Egy vevot vegul kileptetunk" << endl;
+	cout << "Egy vevot kileptetunk" << endl;
+	aruhaz.deleteBuyer();
+	cout << endl;
+	aruhaz.list();
+	cout << "-------------" << endl;
+
+	cout << "4 vevot kileptetunk" << endl;
+	aruhaz.deleteBuyer();
+	aruhaz.deleteBuyer();
+	aruhaz.deleteBuyer();
 	aruhaz.deleteBuyer();
 	cout << endl;
 	aruhaz.list();
